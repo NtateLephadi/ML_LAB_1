@@ -60,6 +60,8 @@ public:
   void load_distances();
 
   std::vector<std::vector<double>> minimum_distance();
+
+  void cluster_points(std::vector<std::vector<double>>);
 };
 
 #endif

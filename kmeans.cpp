@@ -77,8 +77,9 @@ int main(int argc, char const *argv[]) {
 
   g.load_distances();
 
-  g.minimum_distance();
-
   g.to_string();
+
+  g.cluster_points(g.minimum_distance());
+
   return 0;
 }

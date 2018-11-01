@@ -182,14 +182,63 @@ void graph::to_string(){
       v.push_back(x);
       minimum_distance = std::numeric_limits<double>::max();
     }
+    return v;
+  }
 
-    std::cout << "clustered distances" << '\n';
+  void graph::cluster_points(std::vector<std::vector<double>> v){
+    this->cluster1.clear();
+    this->cluster2.clear();
+    this->cluster3.clear();
+    std::vector<double> x;
     for (size_t i = 0; i < v.size(); i++) {
       /* code */
-      for (size_t j = 0; j < v[i].size(); j++) {
+      x.clear();
+      if (v[i][1]==1) {
         /* code */
-        std::cout << v[i][j] << '\n';
+        x.push_back(this->points[i][0]);
+        x.push_back(this->points[i][1]);
+        this->cluster1.push_back(x);
+      }
+      if (v[i][1]==2) {
+        /* code */
+        x.push_back(this->points[i][0]);
+        x.push_back(this->points[i][1]);
+        this->cluster2.push_back(x);
+      }
+      if (v[i][1]==3) {
+        /* code */
+        x.push_back(this->points[i][0]);
+        x.push_back(this->points[i][1]);
+        this->cluster3.push_back(x);
       }
     }
-    return v;
+    std::cout << "group cluster 1" << '\n';
+    for (size_t i = 0; i < this->cluster1.size(); i++) {
+      /* code */
+      for (size_t j = 0; j < this->cluster1[i].size(); j++) {
+        /* code */
+        std::cout << this->cluster1[i][j] << ' ';
+      }
+      std::cout << '\n';
+    }
+
+    std::cout << "group cluster 2" << '\n';
+    for (size_t i = 0; i < this->cluster2.size(); i++) {
+      /* code */
+      for (size_t j = 0; j < this->cluster2[i].size(); j++) {
+        /* code */
+        std::cout << this->cluster2[i][j] << ' ';
+      }
+      std::cout << '\n';
+    }
+
+    std::cout << "group cluster 3" << '\n';
+    for (size_t i = 0; i < this->cluster3.size(); i++) {
+      /* code */
+      for (size_t j = 0; j < this->cluster3[i].size(); j++) {
+        /* code */
+        std::cout << this->cluster3[i][j] << ' ';
+      }
+      std::cout << '\n';
+    }
   }
