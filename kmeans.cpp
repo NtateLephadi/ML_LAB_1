@@ -81,5 +81,6 @@ int main(int argc, char const *argv[]) {
 
   g.cluster_points(g.minimum_distance());
 
+  g.new_centroid();
   return 0;
 }

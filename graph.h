@@ -62,6 +62,8 @@ public:
   std::vector<std::vector<double>> minimum_distance();
 
   void cluster_points(std::vector<std::vector<double>>);
+
+  void new_centroid();
 };
 
 #endif

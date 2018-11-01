@@ -185,60 +185,109 @@ void graph::to_string(){
     return v;
   }
 
-  void graph::cluster_points(std::vector<std::vector<double>> v){
-    this->cluster1.clear();
-    this->cluster2.clear();
-    this->cluster3.clear();
-    std::vector<double> x;
-    for (size_t i = 0; i < v.size(); i++) {
+void graph::cluster_points(std::vector<std::vector<double>> v){
+  this->cluster1.clear();
+  this->cluster2.clear();
+  this->cluster3.clear();
+  std::vector<double> x;
+  for (size_t i = 0; i < v.size(); i++) {
+    /* code */
+    x.clear();
+    if (v[i][1]==1) {
       /* code */
-      x.clear();
-      if (v[i][1]==1) {
-        /* code */
-        x.push_back(this->points[i][0]);
-        x.push_back(this->points[i][1]);
-        this->cluster1.push_back(x);
-      }
-      if (v[i][1]==2) {
-        /* code */
-        x.push_back(this->points[i][0]);
-        x.push_back(this->points[i][1]);
-        this->cluster2.push_back(x);
-      }
-      if (v[i][1]==3) {
-        /* code */
-        x.push_back(this->points[i][0]);
-        x.push_back(this->points[i][1]);
-        this->cluster3.push_back(x);
-      }
+      x.push_back(this->points[i][0]);
+      x.push_back(this->points[i][1]);
+      this->cluster1.push_back(x);
     }
-    std::cout << "group cluster 1" << '\n';
-    for (size_t i = 0; i < this->cluster1.size(); i++) {
+    if (v[i][1]==2) {
       /* code */
-      for (size_t j = 0; j < this->cluster1[i].size(); j++) {
-        /* code */
-        std::cout << this->cluster1[i][j] << ' ';
-      }
-      std::cout << '\n';
+      x.push_back(this->points[i][0]);
+      x.push_back(this->points[i][1]);
+      this->cluster2.push_back(x);
     }
-
-    std::cout << "group cluster 2" << '\n';
-    for (size_t i = 0; i < this->cluster2.size(); i++) {
+    if (v[i][1]==3) {
       /* code */
-      for (size_t j = 0; j < this->cluster2[i].size(); j++) {
-        /* code */
-        std::cout << this->cluster2[i][j] << ' ';
-      }
-      std::cout << '\n';
-    }
-
-    std::cout << "group cluster 3" << '\n';
-    for (size_t i = 0; i < this->cluster3.size(); i++) {
-      /* code */
-      for (size_t j = 0; j < this->cluster3[i].size(); j++) {
-        /* code */
-        std::cout << this->cluster3[i][j] << ' ';
-      }
-      std::cout << '\n';
+      x.push_back(this->points[i][0]);
+      x.push_back(this->points[i][1]);
+      this->cluster3.push_back(x);
     }
   }
+  std::cout << "group cluster 1" << '\n';
+  for (size_t i = 0; i < this->cluster1.size(); i++) {
+    /* code */
+    for (size_t j = 0; j < this->cluster1[i].size(); j++) {
+      /* code */
+      std::cout << this->cluster1[i][j] << ' ';
+    }
+    std::cout << '\n';
+  }
+
+  std::cout << "group cluster 2" << '\n';
+  for (size_t i = 0; i < this->cluster2.size(); i++) {
+    /* code */
+    for (size_t j = 0; j < this->cluster2[i].size(); j++) {
+      /* code */
+      std::cout << this->cluster2[i][j] << ' ';
+    }
+    std::cout << '\n';
+  }
+
+  std::cout << "group cluster 3" << '\n';
+  for (size_t i = 0; i < this->cluster3.size(); i++) {
+    /* code */
+    for (size_t j = 0; j < this->cluster3[i].size(); j++) {
+      /* code */
+      std::cout << this->cluster3[i][j] << ' ';
+    }
+    std::cout << '\n';
+  }
+}
+
+void graph::new_centroid(){
+  double sum_column, sum_row = 0;
+  for (size_t i = 0; i < this->cluster2.size(); i++) {
+    /* code */
+    sum_column+=this->cluster2[i][1];
+    sum_row+=this->cluster2[i][0];
+  }
+  this->centroid2[0]=sum_row/this->cluster2.size();
+  this->centroid2[1]=sum_column/this->cluster2.size();
+  std::cout << "centroid 2" << '\n';
+  for (size_t i = 0; i < this->centroid2.size(); i++) {
+    /* code */
+    std::cout << this->centroid2[i] << ' ';
+  }
+  std::cout << '\n';
+
+  sum_row=0;
+  sum_column=0;
+  for (size_t i = 0; i < this->cluster3.size(); i++) {
+    /* code */
+    sum_column+=this->cluster3[i][1];
+    sum_row+=this->cluster3[i][0];
+  }
+  this->centroid3[0]=sum_row/this->cluster3.size();
+  this->centroid3[1]=sum_column/this->cluster3.size();
+  std::cout << "centroid 3" << '\n';
+  for (size_t i = 0; i < this->centroid3.size(); i++) {
+    /* code */
+    std::cout << this->centroid3[i] << ' ';
+  }
+  std::cout << '\n';
+
+  sum_row=0;
+  sum_column=0;
+  for (size_t i = 0; i < this->cluster1.size(); i++) {
+    /* code */
+    sum_column+=this->cluster1[i][1];
+    sum_row+=this->cluster1[i][0];
+  }
+  this->centroid1[0]=sum_row/this->cluster1.size();
+  this->centroid1[1]=sum_column/this->cluster1.size();
+  std::cout << "centroid 1" << '\n';
+  for (size_t i = 0; i < this->centroid1.size(); i++) {
+    /* code */
+    std::cout << this->centroid1[i] << ' ';
+  }
+  std::cout << '\n';
+}
