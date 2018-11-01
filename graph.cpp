@@ -1,6 +1,9 @@
 #include "math.h"
 #include "graph.h"
 #include <iostream>
+#include <algorithm>
+#include <limits>       // std::numeric_limits
+
 
 graph::graph(){}
 
@@ -150,6 +153,16 @@ void graph::to_string(){
     }
   }
 
-  // int graph::minimum_distance(){
-  //
-  // }
+  std::vector<double> graph::minimum_distance(){
+    std::vector<double> v;
+    double minimum_distance = std::numeric_limits<double>::max();
+    for (size_t i = 0; i < this->distance1.size(); i++) {
+      /* code */
+      minimum_distance = std::min(minimum_distance, this->distance1[i]);
+      minimum_distance = std::min(minimum_distance, this->distance2[i]);
+      minimum_distance = std::min(minimum_distance, this->distance3[i]);
+      v.push_back(minimum_distance);
+      minimum_distance = std::numeric_limits<double>::max();
+    }
+    return v;
+  }

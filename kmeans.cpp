@@ -77,6 +77,8 @@ int main(int argc, char const *argv[]) {
 
   g.load_distances();
 
+  g.minimum_distance();
+
   g.to_string();
   return 0;
 }
