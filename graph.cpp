@@ -141,7 +141,7 @@ void graph::to_string(){
     std::vector<int> p1,
     std::vector<double> p2
   ){
-    return sqrt(pow(p1[0]-p2[0], 2.0)+pow(p1[0]-p2[1], 2.0));
+    return sqrt(pow(p1[0]-p2[0], 2.0)+pow(p1[1]-p2[1], 2.0));
   }
 
   void graph::load_distances(){
@@ -245,6 +245,32 @@ void graph::cluster_points(std::vector<std::vector<double>> v){
 
 void graph::new_centroid(){
   double sum_column, sum_row = 0;
+  sum_row=0;
+  sum_column=0;
+  for (size_t i = 0; i < this->cluster1.size(); i++) {
+    /* code */
+    sum_column+=this->cluster1[i][1];
+    sum_row+=this->cluster1[i][0];
+  }
+
+  if (this->cluster1.size()==0) {
+    /* code */
+    this->centroid1[0]=0;
+    this->centroid1[1]=0;
+  }
+  else{
+    this->centroid1[0]=sum_row/this->cluster1.size();
+    this->centroid1[1]=sum_column/this->cluster1.size();
+  }
+  std::cout << "centroid 1" << '\n';
+  for (size_t i = 0; i < this->centroid1.size(); i++) {
+    /* code */
+    std::cout << this->centroid1[i] << ' ';
+  }
+  std::cout << '\n';
+
+  sum_row=0;
+  sum_column=0;
   for (size_t i = 0; i < this->cluster2.size(); i++) {
     /* code */
     sum_column+=this->cluster2[i][1];
@@ -266,28 +292,19 @@ void graph::new_centroid(){
     sum_column+=this->cluster3[i][1];
     sum_row+=this->cluster3[i][0];
   }
-  this->centroid3[0]=sum_row/this->cluster3.size();
-  this->centroid3[1]=sum_column/this->cluster3.size();
+  if (this->cluster3.size()==0) {
+    /* code */
+    this->centroid3[0]=0;
+    this->centroid3[1]=0;
+  }
+  else{
+    this->centroid3[0]=sum_row/this->cluster3.size();
+    this->centroid3[1]=sum_column/this->cluster3.size();
+  }
   std::cout << "centroid 3" << '\n';
   for (size_t i = 0; i < this->centroid3.size(); i++) {
     /* code */
     std::cout << this->centroid3[i] << ' ';
-  }
-  std::cout << '\n';
-
-  sum_row=0;
-  sum_column=0;
-  for (size_t i = 0; i < this->cluster1.size(); i++) {
-    /* code */
-    sum_column+=this->cluster1[i][1];
-    sum_row+=this->cluster1[i][0];
-  }
-  this->centroid1[0]=sum_row/this->cluster1.size();
-  this->centroid1[1]=sum_column/this->cluster1.size();
-  std::cout << "centroid 1" << '\n';
-  for (size_t i = 0; i < this->centroid1.size(); i++) {
-    /* code */
-    std::cout << this->centroid1[i] << ' ';
   }
   std::cout << '\n';
 }

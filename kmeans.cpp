@@ -1,4 +1,6 @@
 #include "graph.h"
+#include <iostream>
+
 
 int main(int argc, char const *argv[]) {
   /* code */
@@ -75,12 +77,18 @@ int main(int argc, char const *argv[]) {
     }
   );
 
-  g.load_distances();
+  for (size_t i = 1; i < 5; i++) {
+    /* code */
+    std::cout << "iteration" << ' ' << i;
+    std::cout << '\n';
 
-  g.to_string();
+    g.load_distances();
 
-  g.cluster_points(g.minimum_distance());
+    // g.to_string();
 
-  g.new_centroid();
+    g.cluster_points(g.minimum_distance());
+
+    g.new_centroid();
+  }
   return 0;
 }
