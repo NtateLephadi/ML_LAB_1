@@ -153,16 +153,43 @@ void graph::to_string(){
     }
   }
 
-  std::vector<double> graph::minimum_distance(){
-    std::vector<double> v;
+  std::vector<std::vector<double>> graph::minimum_distance(){
+    std::vector<std::vector<double>> v;
+    double index = 0;
     double minimum_distance = std::numeric_limits<double>::max();
     for (size_t i = 0; i < this->distance1.size(); i++) {
       /* code */
       minimum_distance = std::min(minimum_distance, this->distance1[i]);
       minimum_distance = std::min(minimum_distance, this->distance2[i]);
       minimum_distance = std::min(minimum_distance, this->distance3[i]);
-      v.push_back(minimum_distance);
+
+      if (this->distance1[i]==minimum_distance) {
+        /* code */
+        index = 1;
+      }
+
+      if (this->distance2[i]==minimum_distance) {
+        /* code */
+        index = 2;
+      }
+
+      if (this->distance3[i]==minimum_distance) {
+        /* code */
+        index = 3;
+      }
+      std::vector<double> x;
+      x={minimum_distance, index};
+      v.push_back(x);
       minimum_distance = std::numeric_limits<double>::max();
+    }
+
+    std::cout << "clustered distances" << '\n';
+    for (size_t i = 0; i < v.size(); i++) {
+      /* code */
+      for (size_t j = 0; j < v[i].size(); j++) {
+        /* code */
+        std::cout << v[i][j] << '\n';
+      }
     }
     return v;
   }

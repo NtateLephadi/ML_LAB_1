@@ -59,7 +59,7 @@ public:
 
   void load_distances();
 
-  std::vector<double> minimum_distance();
+  std::vector<std::vector<double>> minimum_distance();
 };
 
 #endif
